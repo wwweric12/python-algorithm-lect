@@ -3,7 +3,7 @@ lst=list(map(int,input().split()))
 
 lt=1
 rt=sum(lst)
-
+maxx=max(lst)
 
 
 answer=0
@@ -17,7 +17,7 @@ while lt<=rt:
         if tmp >mid :
             cnt+=1
             tmp=i 
-    if cnt <= m:
+    if mid >=maxx and  cnt <= m:
         rt=mid-1
         answer=mid
     else:
@@ -61,10 +61,11 @@ print(answer)
 # lt=1
 # rt=sum(lst)
 # res =0
+# maxx = max(lst)
 
 # while lt<=rt:
 #     mid = (lt+rt)//2
-#     if Count(mid)<=m:
+#     if mid >=maxx and Count(mid)<=m:
 #         res = mid
 #         rt=mid-1
 #     else:
