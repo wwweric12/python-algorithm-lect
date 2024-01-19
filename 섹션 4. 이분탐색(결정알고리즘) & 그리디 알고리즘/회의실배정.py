@@ -3,19 +3,21 @@ lst=[]
 for _ in range(n):
     lst.append(list(map(int,input().split())))
 
-lst.sort(key= lambda x : x[1])
+lst.sort(key= lambda x : (x[1],x[0]))
 
-tmp =lst[0][1]
+tmp =lst[0][1] 
 cnt =1
-
-for i in lst:
-    if i[0]>=tmp:
+for i in range(1,len(lst)):
+    if lst[i][0]>=tmp:
         cnt+=1
-        tmp = i[1]
+        tmp = lst[i][1]
 print(cnt)
 
+# 하나만 있는 회의인경우 일때
+# ex)3,3 일때 for문이 돌기때문에 cnt가 1 증가해서 틀림 
 
-    
+
+
 # 답안
 
 # n = int(input())
