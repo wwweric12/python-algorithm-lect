@@ -26,25 +26,46 @@ else:
 
 #답안
 
-a = input()
-b = input()
+# a = input()
+# b = input()
 
-str1 = dict()
-str2 = dict()
+# str1 = dict()
+# str2 = dict()
 
-for x in a:
-    str1[x] = str1.get(x,0)+1 # 존재하는경우 +1 존재하지 않는경우 0으로 초기화 한다음에 +1
+# for x in a:
+#     str1[x] = str1.get(x,0)+1 # 존재하는경우 +1 존재하지 않는경우 0으로 초기화 한다음에 +1
 
-for x in b:
-    str2[x]=str2.get(x,0)+1
+# for x in b:
+#     str2[x]=str2.get(x,0)+1
 
-for i in str1.keys():
-    if i in str2.keys():
-        if str1[i]!=str2[i]:
-            print("NO")
-            break
-    else:
-        print("NO")
-        break
-else:
-    print("YES")
+# for i in str1.keys():
+#     if i in str2.keys():
+#         if str1[i]!=str2[i]:
+#             print("NO")
+#             break
+#     else:
+#         print("NO")
+#         break
+# else:
+#     print("YES")
+    
+    
+# 답안 업그레이드
+
+# a= input()
+# b= input()
+
+# sh=dict()
+
+# for x in a:
+#   sh[x] = sh.get(x,0)+1
+
+# for x in b:
+#     sh[x] = sh.get(x,0)-1 
+
+# for x in a:
+#     if sh.get(x) > 0:
+#         print("NO")
+#         break
+# else:
+#     print("YES")
