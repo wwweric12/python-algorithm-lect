@@ -22,8 +22,8 @@ def DFS(L):
                 lst[L]=i
                 DFS(L+1)
                 ch[i]=0
-         
 
+    
 
 if __name__ == "__main__":
     n, f = map(int,input().split())
