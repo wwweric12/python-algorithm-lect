@@ -54,7 +54,7 @@ n , k = map(int,input().split())
 a = list(map(int,input().split()))
 m = int(input())
 cnt=0
-for x in it.combinations(a,k) # a라는 리스트에서 k개만 뽑는 조합을 튜플형태로 나옴
+for x in it.combinations(a,k): # a라는 리스트에서 k개만 뽑는 조합을 튜플형태로 나옴
     if sum(x)%m ==0:
         cnt+=1
 print(cnt)
