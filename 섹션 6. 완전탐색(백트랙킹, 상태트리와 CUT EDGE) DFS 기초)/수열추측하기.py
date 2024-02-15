@@ -64,3 +64,20 @@ if __name__ == "__main__":
         b[i]=b[i-1]*(n-i)//i # combination(조합) //은 소수점없애기위해서
     DFS(0,0)
     
+    
+#라이브러리를 활용
+    
+import itertools as it      
+n, f = map(int,input().split())
+b=[1]*n #무엇을 곱할지 이항계수
+for i in range(1,n):
+    b[i]=b[i-1]*(n-i)//i # combination(조합) //은 소수점없애기위해서
+a = list(range(1,n+1))
+for tmp in it.permutations(a): # a라는 리스트에서 순열을 튜플형태로 다구해줌
+    sum = 0
+    for L, x in enumerate(tmp): #index와 값을 다가져옴 
+        sum+=(x*b[L])
+    if sum == f:
+        for x in tmp:
+            print(x, end=' ')
+        break
