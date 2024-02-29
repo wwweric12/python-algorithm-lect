@@ -21,7 +21,7 @@ print(max(dy))
 
 
 
-#답안 
+# 답안 
 
 # n = int(input())
 # arr=list(map(int,input().split()))
