@@ -1,47 +1,50 @@
-from heapq import heappush, heappop
+import heapq
 
 def solution(k, n, reqs):
-    def cal_wait_time(waitings, n):  # 유형 별 waiting_list에 n명의 상담 원이 있을 때 대기 시간 계산
-        total_time = 0
-        counsel_list = []
-        for _ in range(n):
-            heappush(counsel_list, 0)
-        for start, duration in waitings:
-            prev_end = heappop(counsel_list)  # 자리가 생기는 시간
-            if start > prev_end:  # 바로 상담 가능
-                heappush(counsel_list, start + duration)
+    answer = 0
+    lst=[]
+    ch=[1 for _ in range(k+1)]
+    
+    def comb(L,start):
+        if L == n-k:
+            lst.append(ch[:])
+        else:
+            for i in range(start,k+1):
+                ch[i]+=1
+                comb(L+1,i)
+                ch[i]-=1
+                
+    comb(0,1)
+    
+    
+    
+    def waiting_time(mento):
+        nonlocal min_time
+        res=0
+        for req in reqs:
+            start, time, type = req
+            while hq[type]:
+                end=heapq.heappop(hq[type])    
+                if end> start:
+                    heapq.heappush(hq[type],end)
+                    break
+                mento[type]+=1
+                    
+            if mento[type] !=0:
+                heapq.heappush(hq[type],start+time)
+                mento[type]-=1
             else:
-                wait_time = prev_end - start
-                total_time += wait_time
-                heappush(counsel_list, prev_end + duration)
-        return total_time
+                end=heapq.heappop(hq[type])
+                res+=end-start
+                heapq.heappush(hq[type],end+time)
+        
 
-    result = 1e9
+        min_time=min(min_time,res)
+    
+    min_time=100000000
+    for tmp_lst in lst:
+        hq=[[] for _ in range(k+1)]
+        waiting_time(tmp_lst)
 
-    # 유형별 요청 분리
-    waiting_list = [[] for _ in range(k)]
-    for req in reqs:
-        waiting_list[req[2] - 1].append([req[0], req[1]])
-
-    # DFS를 통한 멘토 배치 조합 구하기
-    mentos = []
-    ch = [1] * k  # 각 유형당 최소 1명씩 배치
-
-    def dfs(L, idx):
-        if L == n - k:
-            mentos.append(ch.copy())
-            return
-        for i in range(idx, k):
-            ch[i] += 1
-            dfs(L + 1, i)
-            ch[i] -= 1
-
-    dfs(0, 0)
-
-    for case in mentos:
-        time = 0
-        for i in range(k):
-            time += cal_wait_time(waiting_list[i], case[i])
-        result = min(result, time)
-
-    return result
+    
+    return min_time
