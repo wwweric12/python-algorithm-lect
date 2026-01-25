@@ -18,7 +18,7 @@ m = int(input())
 friend= [[]for _ in range(n+1)]
 enemy = [[]for _ in range(n+1)]
 
-parents= [0 for _ in range(n+1)]
+parents= [i for i in range(n+1)]
 
 
 def find_parents(node):
@@ -35,23 +35,11 @@ def union(a,b):
     parents_a = find_parents(a)
     parents_b = find_parents(b)
     
-    if parents_a != 0 and parents_b != 0:
-        if parents_b < parents_a:
-            parents[parents_a] = parents_b
-        else:
-            parents[parents_b] = parents_a
-    
-    elif parents_a == 0 and parents_b == 0:
-        if b < a:
-            parents[b]= b
-            parents[a] = b
-        else:
-            parents[a] = a
-            parents[b] = a
-    elif parents_a == 0:
-        parents[a] = parents_b
+    if parents_b < parents_a:
+        parents[parents_a] = parents_b
     else:
-        parents[b] = parents_a
+        parents[parents_b] = parents_a
+
 
         
      
@@ -100,6 +88,10 @@ for i in range(1,n+1):
 
 
 print(res)
+
+
+
+
 
 
 
