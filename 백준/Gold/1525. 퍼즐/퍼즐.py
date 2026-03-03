@@ -1,4 +1,4 @@
-
+import sys 
 from collections import deque
 lst=[]
 
@@ -30,7 +30,9 @@ result_value= 0
 for i in range(9):
     result_value |= (result[i]<<(4*i))
 
-
+if binary == result_value:
+    print(0)
+    sys.exit()
 
 
 Q.append((0,binary,zeros))
@@ -39,12 +41,7 @@ res=-1
 while Q:
     cnt, binary_value,c_zeros = Q.popleft()
     y,x = c_zeros 
-    if binary_value == result_value:
-        res= cnt
-        break
-    if binary_value in visited:
-        continue
-    visited.add(binary_value)
+    
     for i in range(4):
         xx= x+dx[i]
         yy= y+dy[i]
@@ -54,19 +51,24 @@ while Q:
             tmp_value &=~(0xF <<(xx+3*yy)*4)
             tmp_value |= tmp <<((x+3*y)*4)
 
-            if tmp_value in visited:
-                continue
             if tmp_value ==result_value:
                 res= cnt+1
-                break
-
-            Q.append((cnt+1,tmp_value,(yy,xx)))
-    if res != -1:
-        break
+                print(res)
+                sys.exit()
+            if tmp_value not in visited:
+                visited.add(tmp_value)
+                Q.append((cnt+1,tmp_value,(yy,xx)))
+                continue
 
 
 
 print(res)
+
+
+
+
+
+
 
 
 
