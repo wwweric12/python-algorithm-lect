@@ -3,7 +3,7 @@
 #(55+55)/5 -> 22 
 
 def solution(N, number):
-    answer = -1
+    answer = 0
 
     dp= [set() for _ in range(9)]
     
@@ -13,18 +13,16 @@ def solution(N, number):
         for j in range(1,i):
             for k in dp[j]:
                 for t in dp[i-j]:
-                    dp[i].add(k+t)
-                    dp[i].add(k*t)
-                    dp[i].add(k-t)
-                    if t !=0:
-                        dp[i].add(k//t)
+                    dp[i].add(k+j)
+                    dp[i].add(k*j)
+                    dp[i].add(k-j)
+                    if j !=0:
+                        dp[i].add(k//j)
         
         if number in dp[i]:
-            if i >8:
-                return -1
             return i
                     
-                
+                    
         
     
     return answer
